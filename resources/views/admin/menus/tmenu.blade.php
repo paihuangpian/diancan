@@ -18,10 +18,17 @@
 @endif
 </p>
 <p><b>所有(勾选存在的菜单到当前菜单，并点击更新)：</b>
+
+<?php
+	foreach($tmenus as $tmenu){
+		$tmenuNames[] = $tmenu->name;
+	} 
+	// dump($tmenuNames);
+?>
 <form action="{{ route('tmenu') }}" method="post">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	@foreach($menus as $menu)
-		<input type="checkbox" name="menus[]" value="{{ $menu->name }}"> {{ $menu->name }}
+		<input type="checkbox" name="menus[]" value="{{ $menu->name }}" @if(in_array($menu->name, $tmenuNames)) checked="checked" @endif> {{ $menu->name }}
 	@endforeach
 	<button>更新</button>
 </form>
