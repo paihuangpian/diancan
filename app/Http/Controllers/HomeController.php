@@ -9,10 +9,7 @@ use App\Http\Requests;
 class HomeController extends Controller
 {
     public function index(){
-    	$tmenus = \DB::table('tmenus')->where('created_at', date('Y-m-d'))->get();
-        if(!$tmenus){
-            $tmenus = \DB::table('tmenus')->where('created_at', date('Y-m-d', (strtotime(date('Y-m-d')) - 24*3600)))->get();
-        }
+    	$tmenus = \DB::table('tmenus')->get();
     	return view('home.index', ['tmenus' => $tmenus]);
     }
 
