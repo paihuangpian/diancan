@@ -1,13 +1,36 @@
+body{
+	padding-top: 50px;
+}
 a{
 	text-decoration: none;
-	color: #333;
+	color: #f60;
 }
 a:hover{
 	color:#f30;
 }
+input{
+	outline: none;
+	height: 27px;
+}
+textarea{
+	outline: none;
+}
+button{
+	height: 28px;
+	background: #f60;
+	color:#fff;
+	border: solid 1px #f30;
+}
+form{
+	display: inline;
+}
 .nav{
 	height: 50px;
 	background-color: #f7f7f7;
+	top: 0;
+	right: 0;
+	left: 0;
+	position: fixed;
 }
 .nav a{
 	float: left;
@@ -15,26 +38,36 @@ a:hover{
 	padding: 0 10px;
 	line-height: 50px;
 	font-size: 14px;
-	
+	color: #333;
 }
 .nav a:hover{
-	color:#f60;
+	background-color: #efefef;
 }
 .nav a.brand{
 	font-size: 20px;
-	color:#000;
+	color:#f60;
 }
 .nav a.active{
 	background-color: #e7e7e7;
-	color: #f60;
+}
+.action{
+	margin-top: 10px;
+	padding: 0 10px;
 }
 .action a{
-
+	font-size: 12px;
+}
+.container{
+	margin-top: 10px;
+	padding: 0 10px;
 }
 table{
 	border: solid 1px #e7e7e7;
 	width: 100%;
 	color: #666;
+}
+table a{
+	font-size: 12px;
 }
 table th, table td{
 	text-align: left;

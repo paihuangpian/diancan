@@ -1,37 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>点餐系统后台</title>
-	<link href="http://cdn.bootcss.com/normalize/3.0.3/normalize.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-</head>
-<body>
-	<div class="nav">
-		<a href="" class="brand">格木订餐系统后台</a>
-		<a href="" class="active">订单管理</a>
-		<a href="">菜单设置</a>
-		<a href="">人员管理</a>
-	</div>
-	<div class="action">
-		
-	</div>
-	<table>
-		<tr><th>序号</th><th>姓名</th><th>菜单</th></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-		<tr><td>1</td><td>佘行</td><td>秋刀鱼</td></tr>
-	</table>
+@extends('admin.layouts.master')
 
-  
-</body>
-</html>
+@section('action')
+<form>
+	按日期：<input type="text" onClick="WdatePicker()" placeholder="选择日期"> <button type="submit">查询</button>
+</form>
+<form>
+	按姓名：<input type="text" placeholder="输入姓名"> <button type="submit">查询</button>
+</form>
+<a href="">导出到Excel</a>
+@endsection('action')
+
+@section('content')
+	<table>
+		<tr><th>序号</th><th>订单号</th><th>姓名</th><th>菜单</th><th>备注</th><th>操作</th></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+		<tr><td>1</td><td>20160318102040</td><td>佘行</td><td>秋刀鱼 / 炸鸡 <a href="">更改</a></td><td></td><td><a href="">删除</a></td></tr>
+	</table>
+@endsection
