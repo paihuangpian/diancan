@@ -1,0 +1,49 @@
+a{
+	text-decoration: none;
+	color: #333;
+}
+a:hover{
+	color:#f30;
+}
+.nav{
+	height: 50px;
+	background-color: #f7f7f7;
+}
+.nav a{
+	float: left;
+	display: inline-block;
+	padding: 0 10px;
+	line-height: 50px;
+	font-size: 14px;
+	
+}
+.nav a:hover{
+	color:#f60;
+}
+.nav a.brand{
+	font-size: 20px;
+	color:#000;
+}
+.nav a.active{
+	background-color: #e7e7e7;
+	color: #f60;
+}
+.action a{
+
+}
+table{
+	border: solid 1px #e7e7e7;
+	width: 100%;
+	color: #666;
+}
+table th, table td{
+	text-align: left;
+	font-size: 14px;
+	border: solid 1px #e7e7e7;
+	text-indent: 10px;
+	padding: 10px 0;
+	border-top: solid 1px #c5c5c5;
+}
+table tr:hover{
+	background-color: #f8f8f8;
+}
