@@ -47,6 +47,9 @@ form{
 	font-size: 20px;
 	color:#f60;
 }
+.nav a.brand:hover{
+	background-color: #f7f7f7;
+}
 .nav a.active{
 	background-color: #e7e7e7;
 }
@@ -56,6 +59,9 @@ form{
 }
 .action a{
 	font-size: 12px;
+}
+.action a.active{
+	font-weight: bold;
 }
 .container{
 	margin-top: 10px;
@@ -79,4 +85,8 @@ table th, table td{
 }
 table tr:hover{
 	background-color: #f8f8f8;
+}
+.errors{
+	background-color: #feb;
+	padding: 0 10px;
 }
