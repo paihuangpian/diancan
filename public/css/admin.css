@@ -39,6 +39,7 @@ form{
 	line-height: 50px;
 	font-size: 14px;
 	color: #333;
+	border-bottom: solid 1px #e7e7e7;
 }
 .nav a:hover{
 	background-color: #efefef;

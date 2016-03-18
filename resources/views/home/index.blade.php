@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>格木网络欢迎您~</title>
   <script type="text/javascript">
     var now = new Date();
     var hour = now.getHours();

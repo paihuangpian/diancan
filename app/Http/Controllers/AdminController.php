@@ -164,9 +164,6 @@ class AdminController extends Controller
             });
 
           });
-        })->store('xls')->export('xls');
-
-
-        
+        })->export('xls');
     }
 }
