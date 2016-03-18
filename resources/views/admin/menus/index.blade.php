@@ -13,7 +13,7 @@
 		<tr>
 			<td>{{ $menu->name }}</td>
 			<td>{{ $menu->remark }}</td>
-			<td><a href="{{ route('delMenu', ['id' => $menu->id]) }}">删除</a><td>
+			<td><a href="{{ route('delMenu', ['id' => $menu->id]) }}">删除</a></td>
 		</tr>
 		@endforeach
 	</table>
