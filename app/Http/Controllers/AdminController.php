@@ -53,7 +53,9 @@ class AdminController extends Controller
 
     	$menus = \DB::table('menus')->get();
     	$tmenus = \DB::table('tmenus')->where('created_at', date('Y-m-d'))->get();
-
+        if(!$tmenus){
+            $tmenus = \DB::table('tmenus')->where('created_at', date('Y-m-d', (strtotime(date('Y-m-d')) - 24*3600)))->get();
+        }
     	return view('admin.menus.tmenu', ['tmenus' => $tmenus, 'menus' => \DB::table('menus')->get()]);
     }
 

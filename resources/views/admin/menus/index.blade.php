@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('action')
-<a href="{{ route('tmenu') }}">今日菜单</a> /
+<a href="{{ route('tmenu') }}">当前菜单</a> /
 <a href="{{ route('menus') }}" class="active">所有菜单</a> /
 <a href="{{ route('addMenu') }}">添加菜单</a>
 @endsection('action')
