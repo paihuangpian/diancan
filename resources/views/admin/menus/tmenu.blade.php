@@ -20,6 +20,7 @@
 <p><b>所有(勾选存在的菜单到当前菜单，并点击更新)：</b>
 
 <?php
+	$tmenuNames = [];
 	foreach($tmenus as $tmenu){
 		$tmenuNames[] = $tmenu->name;
 	} 
