@@ -14,7 +14,8 @@ class HomeController extends Controller
     }
 
     public function homeOrder(Request $request){
-    	 $info = [
+
+    	$info = [
             'name.required' => '还没有填写姓名呢~',
             'menus.required' => '还没有填写菜单呢~',
         ];

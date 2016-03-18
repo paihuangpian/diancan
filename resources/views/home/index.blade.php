@@ -2,6 +2,17 @@
 <html>
 <head>
   <title></title>
+  <script type="text/javascript">
+    var now = new Date();
+    var hour = now.getHours();
+    window.onload = function(){
+      if(hour < 12){
+      document.getElementById('type').value = 0;
+      }else{
+        document.getElementById('type').value = 1;
+      }
+    }
+</script>
 </head>
 <body style="background: url(images/home.jpg) no-repeat #F4F4F4;background-size: cover;padding-top: 50px">
 
@@ -21,6 +32,7 @@
     @endif
       <form action="{{ route('homeOrder') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" id="type" name="type">
         <p><input type="text" name="name" style="border:none;height: 40px;width: 100%" placeholder="姓名" value="{{ old('name') }}"></p>
         <p>
         @foreach($tmenus as $tmenu)
@@ -36,5 +48,7 @@
     </div>
   </div>
   
+
+
 </body>
 </html>
