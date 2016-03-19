@@ -34,12 +34,11 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" id="type" name="type">
         <p><input type="text" name="name" style="border:none;height: 40px;width: 100%" placeholder="姓名" value="{{ old('name') }}"></p>
-        <p>
+        <p style="text-align:left">
         @foreach($tmenus as $tmenu)
-          <span style=""><input type="checkbox" name="menus[]" value="{{ $tmenu->name }}"> {{ $tmenu->name }} </span>
+          <input type="checkbox" name="menus[]" value="{{ $tmenu->name }}"> {{ $tmenu->name }}
         @endforeach
         </p>
-        <p style="clear: both;height: 10px"></p>
         <p>
         <button type="submit" style="border: none;cursor:pointer;padding: 10px 30px;width: 100%;color:#fff;background: #a40" href="">
           立即订餐
