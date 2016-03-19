@@ -36,7 +36,7 @@
         <p><input type="text" name="name" style="border:none;height: 40px;width: 100%" placeholder="姓名" value="{{ old('name') }}"></p>
         <p>
         @foreach($tmenus as $tmenu)
-          <span style="float: left;"><input type="checkbox" name="menus[]" value="{{ $tmenu->name }}"> {{ $tmenu->name }} </span>
+          <span style=""><input type="checkbox" name="menus[]" value="{{ $tmenu->name }}"> {{ $tmenu->name }} </span>
         @endforeach
         </p>
         <p style="clear: both;height: 10px"></p>
