@@ -7,9 +7,14 @@
     var hour = now.getHours();
     window.onload = function(){
       if(hour < 12){
-      document.getElementById('type').value = 0;
+        document.getElementById('type').value = 0;
       }else{
         document.getElementById('type').value = 1;
+      }
+      if(hour < 17 && hour > 9){
+        document.getElementById('start').style.display = 'block';
+      }else{
+        document.getElementById('stop').style.display = 'block';
       }
     }
 </script>
@@ -20,9 +25,11 @@
     <h1 style="font-weight: normal;font-family: Microsoft yahei;font-size: 40px">:)</h1> 
     <h1 style="font-weight: normal;font-family: Microsoft yahei;font-size: 40px">格木网络欢迎你~</h1>
 
-    <p style="color:#a40">点餐时间：<span style="color:#333">午饭：10:00 - 12:00 / 晚饭：12:00 - 18:00</span></p>
-    
-    <div style="width: 300px;background: #e7e7e7;margin:0 auto;padding:10px 30px">
+    <p style="color:#a40">点餐时间：<span style="color:#333">午饭：10:00 - 11:00 / 晚饭：14:00 - 16:00</span></p>
+    <div style="width: 300px;margin:0 auto;padding:10px 30px;color:#fff;display: none;" id="stop">
+      <b>休息中~ </b>
+    </div>
+    <div style="width: 300px;background: #e7e7e7;margin:0 auto;padding:10px 30px;;display: none;" id="start">
     @if (count($errors) > 0 )
         <div class="errors" style="background-color: #fe9;padding: 0 10px;">消息：
             @foreach ($errors->all() as $error)
