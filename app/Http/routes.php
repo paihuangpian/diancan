@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web']], function () {
 	    return response()->json(['token' => $token]);
 	});
 
-	Route::get('apiOrder', 'HomeController@homeOrderApi');
+	Route::post('apiOrder', 'HomeController@homeOrderApi');
 });
 
 // return \Carbon\Carbon::now();
