@@ -15,6 +15,14 @@ class HomeController extends Controller
 
     public function homeOrder(Request $request){
 
+        // 重复下单的后果
+        $repeat = \DB::select('select * from orders where ip = "' . $_SERVER['REMOTE_ADDR'] . '" and created_at = "' . date('Y-m-d') .  '" and type = ' . $request->input('type'));
+       
+        if($repeat){
+            $type = $request->input('type') ? '晚饭' : '午饭';
+            return redirect()->back()->withErrors(['errors' => '施主，你' . $type . '确实已经点了一份，不信，你去问前台妹子，如果非要吃多份，可以主动联系她她她哟~'])->withInput();
+        }
+
     	$info = [
             'name.required' => '还没有填写姓名呢~',
             'menus.required' => '还没有填写菜单呢~',
@@ -34,7 +42,7 @@ class HomeController extends Controller
         }
 
     	$result = \DB::table('orders')->insert(
-			    ['name' => $request->input('name'), 'menus' => implode(',', $request->input('menus')), 'type' => $request->input('type'), 'created_at' => date('Y-m-d')]
+			    ['name' => $request->input('name'), 'menus' => implode(',', $request->input('menus')), 'type' => $request->input('type'), 'created_at' => date('Y-m-d'), 'ip' => $_SERVER['REMOTE_ADDR']]
 		);
 
     	if($result){
