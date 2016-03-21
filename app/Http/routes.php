@@ -52,7 +52,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::get('apiToken', function(){
 		$token = csrf_token();
-	    return response()->json($token);
+	    return response()->json(['token' => $token]);
 	});
 
 	Route::post('api', 'HomeController@homeOrderApi');
