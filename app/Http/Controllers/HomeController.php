@@ -51,7 +51,7 @@ class HomeController extends Controller
     }
 
     public function homeOrderApi(Request $request){
-        return response()->json(['status' => 0, 'errors' => $request]);
+        return response()->json($request);
         // 重复下单的后果
         $repeat = \DB::select('select * from orders where ip = "' . $_SERVER['REMOTE_ADDR'] . '" and created_at = "' . date('Y-m-d') .  '" and type = ' . $request->input('type'));
        
