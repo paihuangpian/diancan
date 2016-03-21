@@ -49,6 +49,13 @@ Route::group(['middleware' => ['web']], function () {
 		$tmenus = \DB::table('tmenus')->get();
 	    return response()->json($tmenus);
 	});
+
+	Route::get('apiToken', function(){
+		$token = csrf_token();
+	    return response()->json($token);
+	});
+
+	Route::post('api', 'HomeController@homeOrderApi');
 });
 
 // return \Carbon\Carbon::now();
