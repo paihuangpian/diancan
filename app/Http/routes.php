@@ -44,6 +44,11 @@ Route::group(['middleware' => ['web']], function () {
 	// 点餐
 	Route::get('/', 'HomeController@index');
 	Route::post('/', ['as' => 'homeOrder', 'uses' => 'HomeController@homeOrder']);
+
+	Route::get('api', function(){
+		$tmenus = \DB::table('tmenus')->get();
+	    return response()->json($tmenus);
+	});
 });
 
 // return \Carbon\Carbon::now();
