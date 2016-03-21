@@ -57,7 +57,7 @@ class HomeController extends Controller
        
         if($repeat){
             $type = $request->input('type') ? '晚饭' : '午饭';
-            return response()->json(['status' => 0, 'errors' => '施主，你' . $type . '确实已经点了一份，不信，你去问前台妹子，如果非要吃多份，可以主动联系她她她哟~'])
+            return response()->json(['status' => 0, 'errors' => '施主，你' . $type . '确实已经点了一份，不信，你去问前台妹子，如果非要吃多份，可以主动联系她她她哟~']);
         }
 
         $info = [
