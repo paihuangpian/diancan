@@ -51,13 +51,13 @@ class HomeController extends Controller
     }
 
     public function homeOrderApi(Request $request){
-       
+
         // 重复下单的后果
         $repeat = \DB::select('select * from orders where ip = "' . $_SERVER['REMOTE_ADDR'] . '" and created_at = "' . date('Y-m-d') .  '" and type = ' . $request->input('type'));
        
         if($repeat){
             $type = $request->input('type') ? '晚饭' : '午饭';
-            return response()->json(['status' => 0, 'errors' => '施主，你' . $type . '确实已经点了一份，不信，你去问前台妹子，如果非要吃多份，可以主动联系她她她哟~']);
+            return response()->json(['status' => 0, 'errors' => '客官，你' . $type . '确实已经点了一份，不信，你去问前台妹子，如果非要吃多份，可以主动联系她哟~']);
         }
 
         $info = [
@@ -71,7 +71,7 @@ class HomeController extends Controller
         ], $info);
 
         if ($validator->fails()) {
-            return response()->json(['status' => 0, 'errors' => '请填写名字或者菜单']);
+            return response()->json(['status' => 0, 'errors' => '请填写姓名或者菜单']);
         }
 
         if(count($request->input('menus')) > 2){
@@ -83,7 +83,7 @@ class HomeController extends Controller
         );
 
         if($result){
-            return response()->json(['status' => 1, 'errors' => '已收到客观的订单~']);
+            return response()->json(['status' => 1, 'errors' => '客观，我们已收到你的订单~']);
         }
     }
 }
