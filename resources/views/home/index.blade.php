@@ -11,7 +11,7 @@
       }else{
         document.getElementById('type').value = 1;
       }
-      if(hour < 17 && hour > 9){
+      if(hour < 18 && hour > 9){
         document.getElementById('start').style.display = 'block';
       }else{
         document.getElementById('stop').style.display = 'block';
