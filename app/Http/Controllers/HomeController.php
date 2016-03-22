@@ -79,7 +79,7 @@ class HomeController extends Controller
         }
 
         $result = \DB::table('orders')->insert(
-                ['name' => $request->input('name'), 'menus' => implode(',', $request->input('menus')), 'type' => $request->input('type'), 'created_at' => date('Y-m-d'), 'ip' => $_SERVER['REMOTE_ADDR']]
+                ['name' => $request->input('name'), 'menus' => $request->input('menus'), 'type' => $request->input('type'), 'created_at' => date('Y-m-d'), 'ip' => $_SERVER['REMOTE_ADDR']]
         );
 
         if($result){
