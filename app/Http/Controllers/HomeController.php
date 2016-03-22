@@ -51,7 +51,7 @@ class HomeController extends Controller
     }
 
     public function homeOrderApi(Request $request){
-        return response()->json($request);
+       
         // 重复下单的后果
         $repeat = \DB::select('select * from orders where ip = "' . $_SERVER['REMOTE_ADDR'] . '" and created_at = "' . date('Y-m-d') .  '" and type = ' . $request->input('type'));
        
@@ -60,7 +60,7 @@ class HomeController extends Controller
             return response()->json(['status' => 0, 'errors' => '施主，你' . $type . '确实已经点了一份，不信，你去问前台妹子，如果非要吃多份，可以主动联系她她她哟~']);
         }
 
-        /*$info = [
+        $info = [
             'name.required' => '还没有填写姓名呢~',
             'menus.required' => '还没有填写菜单呢~',
         ];
@@ -72,7 +72,7 @@ class HomeController extends Controller
 
         if ($validator->fails()) {
             return response()->json(['status' => 0, 'errors' => '请填写名字或者菜单']);
-        }*/
+        }
 
         if(count($request->input('menus')) > 2){
             return response()->json(['status' => 0, 'errors' => '最多选择两个菜品']);
