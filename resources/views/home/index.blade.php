@@ -53,7 +53,7 @@
       </form>
     </div>
     <!-- app -->
-    <div style="position: absolute;bottom: 0;left:0;right:0;background: #f7f7f7">
+    <div style="position: absolute;bottom: 0;left:0;right:0;">
         <p><img src="images/app.png"></p>
         <p>手机APP下载 / 目前仅支持Android系统</p>
     </div>

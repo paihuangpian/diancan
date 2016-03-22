@@ -16,12 +16,12 @@ class HomeController extends Controller
     public function homeOrder(Request $request){
 
         // 重复下单的后果
-        $repeat = \DB::select('select * from orders where ip = "' . $_SERVER['REMOTE_ADDR'] . '" and created_at = "' . date('Y-m-d') .  '" and type = ' . $request->input('type'));
+        // $repeat = \DB::select('select * from orders where ip = "' . $_SERVER['REMOTE_ADDR'] . '" and created_at = "' . date('Y-m-d') .  '" and type = ' . $request->input('type'));
        
-        if($repeat){
+        /*if($repeat){
             $type = $request->input('type') ? '晚饭' : '午饭';
             return redirect()->back()->withErrors(['errors' => '施主，你' . $type . '确实已经点了一份，不信，你去问前台妹子，如果非要吃多份，可以主动联系她她她哟~'])->withInput();
-        }
+        }*/
 
     	$info = [
             'name.required' => '还没有填写姓名呢~',
@@ -53,12 +53,12 @@ class HomeController extends Controller
     public function homeOrderApi(Request $request){
 
         // 重复下单的后果
-        $repeat = \DB::select('select * from orders where ip = "' . $_SERVER['REMOTE_ADDR'] . '" and created_at = "' . date('Y-m-d') .  '" and type = ' . $request->input('type'));
+        // $repeat = \DB::select('select * from orders where ip = "' . $_SERVER['REMOTE_ADDR'] . '" and created_at = "' . date('Y-m-d') .  '" and type = ' . $request->input('type'));
        
-        if($repeat){
+        /*if($repeat){
             $type = $request->input('type') ? '晚饭' : '午饭';
             return response()->json(['status' => 0, 'errors' => '客官，你' . $type . '确实已经点了一份，如果您执意要吃多份，我们对此很感动，不过这样的话，您就要主动联系前台下单哟~']);
-        }
+        }*/
 
         $info = [
             'name.required' => '还没有填写姓名呢~',
@@ -74,7 +74,7 @@ class HomeController extends Controller
             return response()->json(['status' => 0, 'errors' => '请填写姓名或者菜单']);
         }
 
-        if(count($request->input('menus')) > 2){
+        if(substr_count($request->input('menus'), ',') > 2){
             return response()->json(['status' => 0, 'errors' => '最多选择两个菜品']);
         }
 
