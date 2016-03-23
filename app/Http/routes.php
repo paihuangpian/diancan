@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	    	Route::get('addOrder', ['as' => 'addOrder', function(){
 	    		$type = $_GET['type'];
-	    		$tmenus = \DB::table('tmenus')->where('created_at', date('Y-m-d'))->get();
+	    		$tmenus = \DB::table('tmenus')->get();
 	    		return view('admin.order.create', ['type' => $type, 'tmenus' => $tmenus]);
 	    	}]);
 
