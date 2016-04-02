@@ -2,7 +2,7 @@
 
 Route::group(['middleware' => ['web']], function () {
     // 后台管理
-	Route::group(['prefix' => 'admin'], function(){
+	Route::group(['prefix' => 'gemudiancan', 'middleware' => 'autha'], function(){
 
 	    Route::get('/', 'AdminController@index');
 
@@ -39,10 +39,17 @@ Route::group(['middleware' => ['web']], function () {
 
 	    	Route::get('export', ['as' => 'export', 'uses' => 'AdminController@export']);
 	    });
+
+	    Route::group(['prefix' => 'users'], function(){
+	    	Route::get('/', ['as' => 'users', 'uses' => 'AdminController@users']);
+	    	Route::get('delUser', ['as' => 'delUser', 'uses' => 'AdminController@delUser']);
+	    	Route::get('userOrders', ['as' => 'userOrders', 'uses' => 'AdminController@userOrders']);
+	    });
 	});
 
 	// 点餐
-	Route::get('/', 'HomeController@index');
+	Route::auth();
+	Route::get('/', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 	Route::post('/', ['as' => 'homeOrder', 'uses' => 'HomeController@homeOrder']);
 
 	Route::get('api', function(){

@@ -2,6 +2,11 @@
 <html>
 <head>
   <title>格木网络欢迎您~</title>
+  <style type="text/css">
+  a{
+    color: #333;
+  }
+  </style>
   <script type="text/javascript">
     var now = new Date();
     var hour = now.getHours();
@@ -23,24 +28,30 @@
 
   <div style="text-align: center;">
     <h1 style="font-weight: normal;font-family: Microsoft yahei;font-size: 40px">:)</h1> 
-    <h1 style="font-weight: normal;font-family: Microsoft yahei;font-size: 40px">格木网络欢迎你~</h1>
+    @if (Auth::guest())
+      <h1 style="font-weight: normal;font-family: Microsoft yahei;font-size: 40px">格木网络欢迎你~</h1>
+    @else
+      <h1 style="font-weight: normal;font-family: Microsoft yahei;font-size: 40px">亲爱的{{ Auth::user()->name }}，么么哒~</h1>
+      <a href="{{ url('/logout') }}">退出</a>
+    @endif
 
     <p style="color:#a40">点餐时间：<span style="color:#333">午饭：10:00 - 11:00 / 晚饭：14:00 - 16:00</span></p>
     <div style="width: 300px;margin:0 auto;padding:10px 30px;color:#fff;display: none;" id="stop">
       <b>休息中~ </b>
     </div>
+
     <div style="width: 300px;background: #e7e7e7;margin:0 auto;padding:10px 30px;;display: none;" id="start">
-    @if (count($errors) > 0 )
-        <div class="errors" style="background-color: #fe9;padding: 0 10px;">消息：
-            @foreach ($errors->all() as $error)
-                {{ $error }}
-            @endforeach
-        </div>
-    @endif
+      @if (count($errors) > 0 )
+          <div class="errors" style="background-color: #fe9;padding: 0 10px;">消息：
+              @foreach ($errors->all() as $error)
+                  {{ $error }}
+              @endforeach
+          </div>
+      @endif
       <form action="{{ route('homeOrder') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" id="type" name="type">
-        <p><input type="text" name="name" style="border:none;height: 40px;width: 100%" placeholder="姓名" value="{{ old('name') }}"></p>
+        <!-- <p><input type="text" name="name" style="border:none;height: 40px;width: 100%" placeholder="姓名" value="{{ old('name') }}"></p> -->
         <p style="text-align:left">
         @foreach($tmenus as $tmenu)
           <input type="checkbox" name="menus[]" value="{{ $tmenu->name }}"> {{ $tmenu->name }}
@@ -52,11 +63,12 @@
         </button>
       </form>
     </div>
+   
     <!-- app -->
-    <div style="position: absolute;bottom: 0;left:0;right:0;">
+    <!-- <div style="position: absolute;bottom: 0;left:0;right:0;">
         <p><img src="images/app.png"></p>
         <p>手机APP下载 / 目前仅支持Android系统</p>
-    </div>
+    </div> -->
   </div>
 
 </body>

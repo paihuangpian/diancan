@@ -12,8 +12,9 @@
         <a href="{{ route('am') }}" @if(Route::currentRouteName() == 'am') class="active" @endif>中午</a>
         <a href="{{ route('pm') }}" @if(Route::currentRouteName() == 'pm') class="active" @endif>晚上</a>
         <!-- <a href="">所有订单</a> -->
-        <a href="{{ route('menus') }}" @if(Route::currentRouteName() == 'menus') class="active" @endif>菜单设置</a>
-        <!-- <a href="">人员管理</a> -->
+        <a href="{{ route('menus') }}" @if(Route::currentRouteName() == 'menus') class="active" @endif>菜单</a>
+        <a href="{{ route('users') }}" @if(Route::currentRouteName() == 'users') class="active" @endif>用户</a>
+        <a href="">结算</a>
     </div>
     @if (count($errors) > 0 )
         <div class="errors">消息：

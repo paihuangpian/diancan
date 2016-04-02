@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class HomeController extends Controller
-{
+{   
     public function index(){
     	$tmenus = \DB::table('tmenus')->get();
     	return view('home.index', ['tmenus' => $tmenus]);
@@ -29,7 +29,7 @@ class HomeController extends Controller
         ];
 
         $validator = \Validator::make($request->all(), [
-            'name' => 'required',
+            // 'name' => 'required',
             'menus' => 'required',
         ], $info);
 
@@ -42,7 +42,7 @@ class HomeController extends Controller
         }
 
     	$result = \DB::table('orders')->insert(
-			    ['name' => $request->input('name'), 'menus' => implode(',', $request->input('menus')), 'type' => $request->input('type'), 'created_at' => date('Y-m-d'), 'ip' => $_SERVER['REMOTE_ADDR']]
+			    ['name' => \Auth::user()->name, 'menus' => implode(',', $request->input('menus')), 'type' => $request->input('type'), 'created_at' => date('Y-m-d'), 'ip' => $_SERVER['REMOTE_ADDR'], 'user_id' => \Auth::user()->id]
 		);
 
     	if($result){

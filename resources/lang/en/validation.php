@@ -92,6 +92,18 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'email' => [
+            'required' => '邮箱必须填写',
+        ],
+        'password' => [
+            'required' => '密码必须填写',
+            'confirmed' => '密码不匹配',
+            'min' => '密码要求不低于6个字符',
+        ],
+        'name' => [
+            'required' => '姓名必须填写',
+        ],
+        
     ],
 
     /*

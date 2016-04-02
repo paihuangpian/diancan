@@ -106,7 +106,7 @@ class AdminController extends Controller
         if(count($request->input('menus')) > 2){
             return redirect()->back()->withErrors(['errors' => '最多选择两个菜品'])->withInput();
         }
-
+        
     	\DB::table('orders')->insert(
 			    ['name' => $request->input('name'), 'menus' => implode(',', $request->input('menus')), 'type' => $request->input('type'), 'created_at' => date('Y-m-d')]
 		);
@@ -167,5 +167,22 @@ class AdminController extends Controller
 
           });
         })->export('xls');
+    }
+
+    // 用户管理
+    public function users(){
+        $users = \DB::table('users')->get();
+        return view('admin.users.index', ['users' => $users]);
+    }
+
+    public function delUser(Request $request){
+        \DB::table('users')->delete($request->input('id'));
+        return redirect()->back();
+    }
+
+    public function userOrders(Request $request){
+        $userName = \DB::table('users')->find($request->input('id'))->name;
+        $userOrders = \DB::table('orders')->where('user_id', $request->input('id'))->get();
+        return view('admin.users.orders', ['userOrders' => $userOrders, 'userName' => $userName]);
     }
 }
