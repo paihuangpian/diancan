@@ -49,6 +49,9 @@ Route::group(['middleware' => ['web']], function () {
 
 	// 点餐
 	Route::auth();
+	Route::get('/home', function(){
+		return redirect('/');
+	});
 	Route::get('/', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 	Route::post('/', ['as' => 'homeOrder', 'uses' => 'HomeController@homeOrder']);
 
