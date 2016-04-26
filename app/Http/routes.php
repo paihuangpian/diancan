@@ -2,7 +2,7 @@
 
 Route::group(['middleware' => ['web']], function () {
     // 后台管理
-	Route::group(['prefix' => 'gemudiancan', 'middleware' => 'autha'], function(){
+	Route::group(['prefix' => 'nicaibudaohoutai', 'middleware' => 'autha'], function(){
 
 	    Route::get('/', 'AdminController@index');
 
