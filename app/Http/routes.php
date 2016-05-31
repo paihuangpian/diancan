@@ -45,6 +45,15 @@ Route::group(['middleware' => ['web']], function () {
 	    	Route::get('delUser', ['as' => 'delUser', 'uses' => 'AdminController@delUser']);
 	    	Route::get('userOrders', ['as' => 'userOrders', 'uses' => 'AdminController@userOrders']);
 	    });
+
+	    Route::group(['prefix' => 'settlement'], function(){
+	    	Route::get('/', ['as' => 'settlement', 'uses' => 'AdminController@overview']);
+	    	Route::get('last', ['as' => 'lastMonth', 'uses' => 'AdminController@lastMonth']);
+	    	Route::get('current', ['as' => 'currentMonth', 'uses' => 'AdminController@currentMonth']);
+
+	    	Route::get('exportLast', ['as' => 'exportLast', 'uses' => 'AdminController@exportLast']);
+	    	Route::get('exportCurrent', ['as' => 'exportCurrent', 'uses' => 'AdminController@exportCurrent']);
+	    });
 	});
 
 	// 点餐

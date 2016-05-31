@@ -35,34 +35,41 @@ form{
 .nav a{
 	float: left;
 	display: inline-block;
-	padding: 0 10px;
+	padding: 0 30px;
 	line-height: 50px;
-	font-size: 14px;
+	font-size: 16px;
 	color: #333;
 	border-bottom: solid 1px #e7e7e7;
 }
 .nav a:hover{
-	background-color: #efefef;
+	/*background-color: #efefef;*/
+	color: #f40;
 }
 .nav a.brand{
 	font-size: 20px;
-	color:#f60;
+	color:#f40;
+	font-weight: bold;
+	padding: 0 10px;
 }
 .nav a.brand:hover{
 	background-color: #f7f7f7;
 }
 .nav a.active{
-	background-color: #e7e7e7;
+	background-color: #f40;
+	color: #fff;
 }
 .action{
 	margin-top: 10px;
 	padding: 0 10px;
 }
 .action a{
+	padding: 2px 6px;
+	display: inline-block;
 	font-size: 12px;
 }
 .action a.active{
-	font-weight: bold;
+	background-color: #f60;
+	color: #fff;
 }
 .container{
 	margin-top: 10px;
@@ -90,4 +97,7 @@ table tr:hover{
 .errors{
 	background-color: #feb;
 	padding: 0 10px;
+}
+.settlement-nav a{
+
 }

@@ -185,4 +185,115 @@ class AdminController extends Controller
         $userOrders = \DB::table('orders')->where('user_id', $request->input('id'))->get();
         return view('admin.users.orders', ['userOrders' => $userOrders, 'userName' => $userName]);
     }
+
+    // 结算
+    public function overview(){
+        return view('admin.settlement.overview');
+    }
+
+    public function lastMonth(){
+        $lastMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') group by user_id");
+        $lastTotal = \DB::select("select count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m')");
+
+        return view('admin.settlement.lastMonth', ['lastMonths' => $lastMonths, 'lastTotal' => $lastTotal]);
+    }
+
+    public function currentMonth(){
+        $currentMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m') group by user_id");
+        $currentTotal = \DB::select("select count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m')");
+
+        return view('admin.settlement.currentMonth', ['currentMonths' => $currentMonths, 'currentTotal' => $currentTotal]);
+    }
+
+    public function exportLast(Request $request){
+
+        $datas = $currentMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') group by user_id");
+
+        foreach($datas as $key => $data){
+           $queue[$key][0] = $key+1;
+           $queue[$key][1] = $data->name;
+           $queue[$key][2] = $data->total;
+        }
+        
+        array_unshift($queue, ['序号','姓名','小计']);
+        
+        $sheet = \Excel::create(iconv('UTF-8', 'GBK', '上月结算结果'),function($excel) use ($queue){
+          $excel->sheet('score', function($sheet) use ($queue){
+            $sheet->rows($queue);
+            $sheet->setWidth(array(
+                'A'     =>  30,
+                'B'     =>  30, 
+                'C'     =>  30
+            ));
+            $sheet->cells('A1:A100', function($cells) {
+                $cells->setAlignment('center');
+            });
+             $sheet->cells('C1:C100', function($cells) {
+                $cells->setAlignment('center');
+            });
+            $sheet->cells('B1:B100', function($cells) {
+                $cells->setAlignment('center');
+            });
+
+            $sheet->cell('A1', function($cell) {
+                $cell->setFontWeight('bold');
+            });
+            $sheet->cell('B1', function($cell) {
+                $cell->setFontWeight('bold');
+            });
+            $sheet->cell('C1', function($cell) {
+                $cell->setFontWeight('bold');
+            });
+
+          });
+        })->export('xls');
+    }
+
+    public function exportCurrent(Request $request){
+
+        $datas = $currentMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m') group by user_id");
+
+        if(! $datas){
+            return redirect()->back();
+        }
+
+        foreach($datas as $key => $data){
+           $queue[$key][0] = $key+1;
+           $queue[$key][1] = $data->name;
+           $queue[$key][2] = $data->total;
+        }
+        
+        array_unshift($queue, ['序号','姓名','小计']);
+        
+        $sheet = \Excel::create(iconv('UTF-8', 'GBK', '本月月结算结果'),function($excel) use ($queue){
+          $excel->sheet('score', function($sheet) use ($queue){
+            $sheet->rows($queue);
+            $sheet->setWidth(array(
+                'A'     =>  30,
+                'B'     =>  30, 
+                'C'     =>  30
+            ));
+            $sheet->cells('A1:A100', function($cells) {
+                $cells->setAlignment('center');
+            });
+             $sheet->cells('C1:C100', function($cells) {
+                $cells->setAlignment('center');
+            });
+            $sheet->cells('B1:B100', function($cells) {
+                $cells->setAlignment('center');
+            });
+
+            $sheet->cell('A1', function($cell) {
+                $cell->setFontWeight('bold');
+            });
+            $sheet->cell('B1', function($cell) {
+                $cell->setFontWeight('bold');
+            });
+            $sheet->cell('C1', function($cell) {
+                $cell->setFontWeight('bold');
+            });
+
+          });
+        })->export('xls');
+    }
 }
