@@ -192,22 +192,22 @@ class AdminController extends Controller
     }
 
     public function lastMonth(){
-        $lastMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') group by user_id");
-        $lastTotal = \DB::select("select count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m')");
+        $lastMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') and user_id <> 0 group by user_id");
+        $lastTotal = \DB::select("select count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') and user_id <> 0");
 
         return view('admin.settlement.lastMonth', ['lastMonths' => $lastMonths, 'lastTotal' => $lastTotal]);
     }
 
     public function currentMonth(){
-        $currentMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m') group by user_id");
-        $currentTotal = \DB::select("select count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m')");
+        $currentMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m') and user_id <> 0 group by user_id");
+        $currentTotal = \DB::select("select count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m') and user_id <> 0");
 
         return view('admin.settlement.currentMonth', ['currentMonths' => $currentMonths, 'currentTotal' => $currentTotal]);
     }
 
     public function exportLast(Request $request){
 
-        $datas = $currentMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') group by user_id");
+        $datas = $currentMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') and user_id <> 0 group by user_id");
 
         foreach($datas as $key => $data){
            $queue[$key][0] = $key+1;
@@ -251,7 +251,7 @@ class AdminController extends Controller
 
     public function exportCurrent(Request $request){
 
-        $datas = $currentMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m') group by user_id");
+        $datas = $currentMonths = \DB::select("select *, count(*) as total from orders where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m') and user_id <> 0 group by user_id");
 
         if(! $datas){
             return redirect()->back();
